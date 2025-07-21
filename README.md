@@ -78,4 +78,4 @@ This will execute the full pipeline, output fairness metrics, and display visual
 
 ## License
 
-Specify your license here.
+This project is provided for educational purposes only.
