@@ -1,0 +1,41 @@
+Q1: Define algorithmic bias and provide two examples of how it manifests in AI systems.
+Algorithmic bias refers to systematic and unfair discrimination in AI systems due to flawed assumptions, biased training data, or design choices, leading to unequal outcomes for different groups.
+
+Examples:
+
+Hiring Algorithms: AI recruitment tools trained on historical data may favor male candidates for technical roles if past hiring was male-dominated.
+
+Facial Recognition: Some systems have higher error rates for darker-skinned individuals due to underrepresentation in training datasets.
+
+
+Q2: Explain the difference between transparency and explainability in AI. Why are both important?
+Transparency refers to openness about how an AI system is developed, including data sources, model architecture, and decision-making processes.
+
+Explainability is the ability to interpret and justify AI decisions in understandable terms for users or stakeholders.
+
+Importance:
+
+Transparency builds trust and accountability by allowing scrutiny of AI development.
+
+Explainability ensures users understand AI decisions, enabling corrections and compliance with regulations (e.g., GDPR’s "right to explanation").
+
+Q3: How does GDPR (General Data Protection Regulation) impact AI development in the EU?
+GDPR imposes strict requirements on AI systems, including:
+
+Data Protection: AI must process personal data lawfully, with user consent, and minimize data collection (privacy by design).
+
+Explainability (Article 22): Users have the right to contest automated decisions affecting them, requiring AI to provide meaningful explanations.
+
+Bias & Fairness: AI must avoid discriminatory outcomes, aligning with GDPR’s non-discrimination principles.
+
+Accountability: Organizations must document AI decision-making processes and conduct impact assessments for high-risk AI.
+
+
+B) Non-maleficence → Ensuring AI does not harm individuals or society.
+
+C) Autonomy → Respecting users’ right to control their data and decisions.
+
+D) Sustainability → Designing AI to be environmentally friendly.
+
+A) Justice → Fair distribution of AI benefits and risks.
+
