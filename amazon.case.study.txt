@@ -1,0 +1,74 @@
+1. Source of Bias
+The bias in Amazon’s AI recruiting tool stemmed from:
+
+Training Data:
+- The model was trained on resumes submitted over a 10-year period, which were predominantly from male applicants (reflecting historical hiring imbalances in tech).
+
+Model Design:
+- The AI learned to penalize resumes containing words like "women’s" (e.g., "women’s chess club captain") and favored male-associated phrasing.
+
+
+2. Proposed Fixes to Improve Fairness
+
+Fix 1: Debiased Training Data
+Approach:
+- Use stratified sampling to ensure gender balance in training data or synthetically augment underrepresented groups.
+
+Code Example (Python - Synthetic Data Augmentation):
+
+from sklearn.utils import resample
+
+# Assume 'female_resumes' is underrepresented
+female_resumes_upsampled = resample(female_resumes, replace=True, n_samples=len(male_resumes))
+balanced_data = male_resumes + female_resumes_upsampled
+
+
+Fix 2: Fair Feature Engineering
+Approach:
+- Remove or neutralize gender-correlated features (e.g., pronouns, club names).
+
+Code Example (NLP Bias Mitigation):
+
+import re
+
+def neutralize_gender(text):
+    gender_words = ["women’s", "men’s", "she", "he", "her", "his"]
+    for word in gender_words:
+        text = re.sub(word, "[REDACTED]", text, flags=re.IGNORECASE)
+    return text
+
+resume_text = "Captain of the women’s chess club"
+print(neutralize_gender(resume_text))  # Output: "Captain of the [REDACTED] chess club"
+
+
+Fix 3: Post-Hoc Fairness Constraints
+Approach:
+- Apply fairness-aware algorithms (e.g., IBM’s AIF360) to enforce demographic parity.
+
+Code Example (Using AIF360):
+
+from aif360.algorithms.postprocessing import CalibratedEqOddsPostprocessing
+
+# Assume 'model' is the trained classifier, 'X_test' is test data, and 'y_test' is labels
+postprocessor = CalibratedEqOddsPostprocessing(privileged_groups=[{'gender': 1}], 
+                                               unprivileged_groups=[{'gender': 0}])
+postprocessor.fit(model.predict(X_test), y_test)
+fair_predictions = postprocessor.predict(model.predict(X_test))
+
+
+3. Fairness Evaluation Metrics
+Post-correction, evaluate using:
+
+Metric                    | Formula/Purpose                                      | Code (sklearn/fairlearn)
+------------------------------------------------------------------------------------------------------------
+Demographic Parity        | Equal selection rates across groups                  | fairlearn.metrics.demographic_parity_difference
+Equalized Odds            | Equal TPR/FPR across groups                          | fairlearn.metrics.equalized_odds_difference
+Disparate Impact          | Ratio of selection rates (target: ~1.0)              | (selection_rate_group1 / selection_rate_group2)
+Accuracy Equity           | Similar accuracy across groups                       | sklearn.metrics.accuracy_score (stratified by group)
+
+# Implementation Example
+from fairlearn.metrics import demographic_parity_difference
+
+# Assume 'y_pred' is model predictions and 'gender' is a protected attribute
+bias_score = demographic_parity_difference(y_true, y_pred, sensitive_features=gender)
+print(f"Demographic Parity Difference: {bias_score:.3f}")  # Target: 0.0
