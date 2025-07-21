@@ -51,6 +51,13 @@ pip install 'aif360[inFairness]'
 
 ## Usage
 
+Clone the repository:
+
+```bash
+git clone https://github.com/TristanBrian/ethics.git
+cd ethics
+```
+
 Run the main script:
 
 ```bash
