@@ -70,7 +70,12 @@ This will execute the full pipeline, output fairness metrics, and display visual
 
 - `compas_audit.py`: Main script for dataset loading, model training, fairness evaluation, and visualization.
 - `img/dataframe.png`: Sample visualization of the dataset dataframe.
+
+  ![Dataframe Visualization](img/dataframe.png)
+
 - `img/train.png`: Sample visualization of the training process or results.
+
+  ![Training Visualization](img/train.png)
 
 ## Other Files in the Repository
 
